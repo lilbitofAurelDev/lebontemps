@@ -21,7 +21,9 @@
         SUPABASE_KEY
     );
 
-    console.log("Le Bon Temps est connecté à Supabase !");
+    document.getElementById("test-supabase").textContent =
+    "🟢 Le site communique avec Supabase";
+
 </script>
         body {
             margin: 0;
@@ -226,6 +228,10 @@
 </head>
 
 <body>
+
+<div id="test-supabase" style="padding:15px; background:#fff3cd; text-align:center;">
+    Test de connexion Supabase...
+</div>
 
 <header>
     <div>
