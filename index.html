@@ -442,7 +442,6 @@ function fermerFormulaire() {
 }
 
 function publierAnnonce() {
-
     const titre = document.getElementById("titre").value;
     const description = document.getElementById("description").value;
     const categorie = document.getElementById("categorie").value;
@@ -459,18 +458,12 @@ function publierAnnonce() {
 
     annonce.innerHTML = `
         <div class="photo">Nouvelle annonce</div>
-
         <div class="contenu">
             <div class="type">JE DONNE MON TEMPS</div>
-
             <h3>${titre}</h3>
-
             <p>${description}</p>
-
             <small>${categorie}</small>
-
             <br><br>
-
             <strong>Disponible : ${heures} h</strong>
         </div>
     `;
