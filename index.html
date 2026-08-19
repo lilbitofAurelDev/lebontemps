@@ -23,53 +23,48 @@
             border-bottom: 1px solid #ddd;
             padding: 18px 30px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 26px;
+            font-size: 27px;
             font-weight: bold;
             color: #2d6a4f;
         }
 
         .tagline {
             color: #666;
-            font-size: 14px;
             margin-top: 4px;
-        }
-
-        .header-right button {
-            margin-left: 10px;
         }
 
         button {
             border: none;
-            border-radius: 6px;
+            border-radius: 7px;
             padding: 12px 18px;
             font-size: 15px;
             cursor: pointer;
         }
 
-        .button-outline {
-            background: white;
-            border: 1px solid #2d6a4f;
-            color: #2d6a4f;
-        }
-
-        .button-primary {
+        .primary {
             background: #2d6a4f;
             color: white;
         }
 
+        .secondary {
+            background: white;
+            color: #2d6a4f;
+            border: 1px solid #2d6a4f;
+        }
+
         .hero {
             background: white;
-            padding: 55px 20px;
             text-align: center;
+            padding: 55px 20px;
         }
 
         .hero h1 {
-            font-size: 38px;
+            font-size: 40px;
             margin: 0 0 12px;
         }
 
@@ -79,18 +74,44 @@
             margin-bottom: 30px;
         }
 
+        .credit {
+            display: inline-block;
+            background: #eef7f1;
+            border: 1px solid #cce5d5;
+            border-radius: 12px;
+            padding: 18px 35px;
+            margin-bottom: 30px;
+        }
+
+        .credit-label {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .credit-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #2d6a4f;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
         .search {
             max-width: 750px;
-            margin: auto;
+            margin: 35px auto 0;
             display: flex;
             gap: 10px;
         }
 
         .search input {
             flex: 1;
-            padding: 16px;
+            padding: 15px;
             border: 1px solid #ccc;
-            border-radius: 6px;
+            border-radius: 7px;
             font-size: 16px;
         }
 
@@ -112,18 +133,13 @@
 
         .category {
             background: white;
-            padding: 25px 15px;
+            padding: 25px;
             text-align: center;
             border-radius: 8px;
             border: 1px solid #eee;
-            cursor: pointer;
         }
 
-        .category:hover {
-            border-color: #2d6a4f;
-        }
-
-        .category-icon {
+        .icon {
             font-size: 30px;
             margin-bottom: 10px;
         }
@@ -142,7 +158,7 @@
         }
 
         .photo {
-            height: 160px;
+            height: 150px;
             background: #ddd;
             display: flex;
             align-items: center;
@@ -150,18 +166,18 @@
             color: #777;
         }
 
-        .annonce-content {
+        .contenu {
             padding: 18px;
         }
 
-        .annonce h3 {
-            margin: 0 0 10px;
+        .contenu h3 {
+            margin-top: 0;
         }
 
-        .price {
-            font-weight: bold;
+        .type {
             color: #2d6a4f;
-            margin-top: 12px;
+            font-weight: bold;
+            font-size: 14px;
         }
 
         footer {
@@ -177,14 +193,11 @@
                 padding: 15px;
             }
 
-            .header-right {
-                display: none;
-            }
-
             .hero h1 {
                 font-size: 30px;
             }
 
+            .actions,
             .search {
                 flex-direction: column;
             }
@@ -208,69 +221,85 @@
         <div class="tagline">Partager son temps et en recevoir</div>
     </div>
 
-    <div class="header-right">
-        <button class="button-outline">Se connecter</button>
-        <button class="button-primary">Déposer une annonce</button>
+    <div>
+        <button class="secondary">Se connecter</button>
+        <button class="primary">Mon compte</button>
     </div>
 </header>
 
 <section class="hero">
 
-    <h1>Que recherchez-vous ?</h1>
+    <h1>Votre temps a de la valeur.</h1>
 
-    <p>Donnez un peu de votre temps. Recevez celui des autres.</p>
+    <p>
+        Donnez un peu de votre temps.<br>
+        Recevez celui des autres.
+    </p>
+
+    <div class="credit">
+        <div class="credit-label">Votre crédit temps</div>
+        <div class="credit-number">0 h</div>
+    </div>
+
+    <div class="actions">
+        <button class="primary">➕ Donner mon temps</button>
+        <button class="secondary">🤝 J'ai besoin d'aide</button>
+    </div>
 
     <div class="search">
-        <input type="text" placeholder="Ex : bricolage, garde d'enfant, jardinage...">
-        <button class="button-primary">Rechercher</button>
+        <input
+            type="text"
+            placeholder="Que recherchez-vous ? Exemple : jardinage, bricolage..."
+        >
+        <button class="primary">Rechercher</button>
     </div>
 
 </section>
 
 <div class="container">
 
-    <h2>Catégories</h2>
+    <h2>Explorer les compétences</h2>
 
     <div class="categories">
 
         <div class="category">
-            <div class="category-icon">🔨</div>
+            <div class="icon">🔨</div>
             <strong>Bricolage</strong>
         </div>
 
         <div class="category">
-            <div class="category-icon">🌱</div>
+            <div class="icon">🌱</div>
             <strong>Jardinage</strong>
         </div>
 
         <div class="category">
-            <div class="category-icon">👶</div>
-            <strong>Enfants</strong>
-        </div>
-
-        <div class="category">
-            <div class="category-icon">💻</div>
+            <div class="icon">💻</div>
             <strong>Informatique</strong>
         </div>
 
         <div class="category">
-            <div class="category-icon">🚗</div>
+            <div class="icon">📚</div>
+            <strong>Cours & savoirs</strong>
+        </div>
+
+        <div class="category">
+            <div class="icon">🚗</div>
             <strong>Transport</strong>
         </div>
 
         <div class="category">
-            <div class="category-icon">🍳</div>
+            <div class="icon">🍳</div>
             <strong>Cuisine</strong>
         </div>
 
         <div class="category">
-            <div class="category-icon">📚</div>
-            <strong>Cours</strong>
+            <div class="icon">🏠</div>
+            <strong>Aide à domicile</strong>
         </div>
 
         <div class="category">
-            <div class="category-icon">✨</div>
-            <strong>Autres</strong>
+            <div class="icon">✨</div>
+            <strong>Autres compétences</strong>
         </div>
 
     </div>
@@ -279,37 +308,46 @@
 
 <div class="container">
 
-    <h2>Quelques annonces</h2>
+    <h2>Les dernières propositions</h2>
 
     <div class="annonces">
 
         <div class="annonce">
             <div class="photo">Photo</div>
 
-            <div class="annonce-content">
-                <h3>Je peux aider à monter vos meubles</h3>
-                <p>Je suis disponible samedi après-midi pour donner un coup de main.</p>
-                <div class="price">2 heures de mon temps</div>
+            <div class="contenu">
+                <div class="type">JE DONNE MON TEMPS</div>
+                <h3>Je peux aider en bricolage</h3>
+                <p>
+                    Montage de meubles, petits travaux et coups de main.
+                </p>
+                <strong>Disponible : 2 h</strong>
             </div>
         </div>
 
         <div class="annonce">
             <div class="photo">Photo</div>
 
-            <div class="annonce-content">
-                <h3>Besoin d'aide pour votre jardin</h3>
-                <p>Je cherche quelqu'un pour m'aider à entretenir mon potager.</p>
-                <div class="price">1 heure demandée</div>
+            <div class="contenu">
+                <div class="type">JE DONNE MON TEMPS</div>
+                <h3>Aide au jardinage</h3>
+                <p>
+                    Je peux aider à entretenir un potager ou un jardin.
+                </p>
+                <strong>Disponible : 3 h</strong>
             </div>
         </div>
 
         <div class="annonce">
             <div class="photo">Photo</div>
 
-            <div class="annonce-content">
-                <h3>Cours d'informatique</h3>
-                <p>Je peux vous aider à prendre en main votre ordinateur.</p>
-                <div class="price">Échange de temps</div>
+            <div class="contenu">
+                <div class="type">JE DONNE MON TEMPS</div>
+                <h3>Je peux aider en informatique</h3>
+                <p>
+                    Ordinateur, téléphone, démarches et petits problèmes.
+                </p>
+                <strong>Disponible : 1 h</strong>
             </div>
         </div>
 
@@ -318,8 +356,8 @@
 </div>
 
 <footer>
-    <p>© 2026 Le Bon Temps</p>
-    <p>Partager son temps et en recevoir.</p>
+    <p><strong>Le Bon Temps</strong></p>
+    <p>Une heure donnée = une heure reçue.</p>
 </footer>
 
 </body>
