@@ -533,7 +533,17 @@
             document.getElementById("categorie").value;
 
         const heures =
-            document.getElementById("heures").value;
+    document.getElementById("heures").value;
+
+const credit = document.querySelector(".credit-number");
+
+const creditActuel =
+    parseFloat(credit.textContent) || 0;
+
+const nouveauCredit =
+    creditActuel + parseFloat(heures);
+
+credit.textContent = nouveauCredit + " h";
 
 
         if (!titre || !description) {
