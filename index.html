@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,21 +11,7 @@
         * {
             box-sizing: border-box;
         }
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-<script>
-    const SUPABASE_URL = "https://kywivhuudeldfsuvwubr.supabase.co/rest/v1/";
-    const SUPABASE_KEY = "sb_publishable_0nz4gV1Xsz1LIqEcB0SDiA_86yCGBWL";
-
-    const supabaseClient = supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-    document.getElementById("test-supabase").textContent =
-    "🟢 Le site communique avec Supabase";
-
-</script>
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -202,9 +189,59 @@
             text-align: center;
         }
 
+        #formulaire {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            overflow: auto;
+            z-index: 1000;
+        }
+
+        .formulaire-contenu {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .formulaire-contenu label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .formulaire-contenu input,
+        .formulaire-contenu textarea,
+        .formulaire-contenu select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .formulaire-contenu textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .formulaire-boutons {
+            margin-top: 25px;
+            display: flex;
+            gap: 10px;
+        }
+
         @media (max-width: 700px) {
             header {
                 padding: 15px;
+            }
+
+            header > div:last-child {
+                display: none;
             }
 
             .hero h1 {
@@ -241,6 +278,7 @@
     </div>
 </header>
 
+
 <section class="hero">
 
     <h1>Votre temps a de la valeur.</h1>
@@ -256,19 +294,32 @@
     </div>
 
     <div class="actions">
-        <button class="primary" onclick="ouvrirFormulaire()">➕ Donner mon temps</button>
-        <button class="secondary">🤝 J'ai besoin d'aide</button>
+
+        <button class="primary" onclick="ouvrirFormulaire()">
+            ➕ Donner mon temps
+        </button>
+
+        <button class="secondary">
+            🤝 J'ai besoin d'aide
+        </button>
+
     </div>
 
     <div class="search">
+
         <input
             type="text"
             placeholder="Que recherchez-vous ? Exemple : jardinage, bricolage..."
         >
-        <button class="primary">Rechercher</button>
+
+        <button class="primary">
+            Rechercher
+        </button>
+
     </div>
 
 </section>
+
 
 <div class="container">
 
@@ -320,6 +371,7 @@
 
 </div>
 
+
 <div class="container">
 
     <h2>Les dernières propositions</h2>
@@ -332,12 +384,11 @@
             <div class="contenu">
                 <div class="type">JE DONNE MON TEMPS</div>
                 <h3>Je peux aider en bricolage</h3>
-                <p>
-                    Montage de meubles, petits travaux et coups de main.
-                </p>
+                <p>Montage de meubles, petits travaux et coups de main.</p>
                 <strong>Disponible : 2 h</strong>
             </div>
         </div>
+
 
         <div class="annonce">
             <div class="photo">Photo</div>
@@ -345,12 +396,11 @@
             <div class="contenu">
                 <div class="type">JE DONNE MON TEMPS</div>
                 <h3>Aide au jardinage</h3>
-                <p>
-                    Je peux aider à entretenir un potager ou un jardin.
-                </p>
+                <p>Je peux aider à entretenir un potager ou un jardin.</p>
                 <strong>Disponible : 3 h</strong>
             </div>
         </div>
+
 
         <div class="annonce">
             <div class="photo">Photo</div>
@@ -358,9 +408,7 @@
             <div class="contenu">
                 <div class="type">JE DONNE MON TEMPS</div>
                 <h3>Je peux aider en informatique</h3>
-                <p>
-                    Ordinateur, téléphone, démarches et petits problèmes.
-                </p>
+                <p>Ordinateur, téléphone, démarches et petits problèmes.</p>
                 <strong>Disponible : 1 h</strong>
             </div>
         </div>
@@ -369,43 +417,53 @@
 
 </div>
 
+
 <footer>
     <p><strong>Le Bon Temps</strong></p>
     <p>Une heure donnée = une heure reçue.</p>
 </footer>
 
-<div id="formulaire" style="
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.5);
-    padding:30px;
-    overflow:auto;
-">
 
-    <div style="
-        max-width:600px;
-        margin:40px auto;
-        background:white;
-        padding:30px;
-        border-radius:12px;
-    ">
+<!-- FORMULAIRE -->
+
+<div id="formulaire">
+
+    <div class="formulaire-contenu">
 
         <h2>Donner mon temps</h2>
 
-        <p>Proposez une compétence ou un coup de main à la communauté.</p>
+        <p>
+            Proposez une compétence ou un coup de main à la communauté.
+        </p>
 
-        <label>Que proposez-vous ?</label>
-        <input id="titre" type="text" placeholder="Ex : Je peux aider à jardiner"
-               style="width:100%;padding:12px;margin:8px 0 18px;">
 
-        <label>Décrivez votre aide</label>
-        <textarea id="description" placeholder="Expliquez ce que vous pouvez faire..."
-                  style="width:100%;height:120px;padding:12px;margin:8px 0 18px;"></textarea>
+        <label for="titre">
+            Que proposez-vous ?
+        </label>
 
-        <label>Catégorie</label>
-        <select id="categorie"
-                style="width:100%;padding:12px;margin:8px 0 18px;">
+        <input
+            id="titre"
+            type="text"
+            placeholder="Ex : Je peux aider à jardiner"
+        >
+
+
+        <label for="description">
+            Décrivez votre aide
+        </label>
+
+        <textarea
+            id="description"
+            placeholder="Expliquez ce que vous pouvez faire..."
+        ></textarea>
+
+
+        <label for="categorie">
+            Catégorie
+        </label>
+
+        <select id="categorie">
+
             <option>Bricolage</option>
             <option>Jardinage</option>
             <option>Informatique</option>
@@ -414,78 +472,138 @@
             <option>Cuisine</option>
             <option>Aide à domicile</option>
             <option>Autres</option>
+
         </select>
 
-        <label>Combien d'heures proposez-vous ?</label>
-        <input id="heures" type="number" min="1" value="1"
-               style="width:100%;padding:12px;margin:8px 0 25px;">
 
-        <button class="primary" onclick="publierAnnonce()">
-            Publier mon offre
-        </button>
+        <label for="heures">
+            Combien d'heures proposez-vous ?
+        </label>
 
-        <button class="secondary" onclick="fermerFormulaire()">
-            Annuler
-        </button>
+        <input
+            id="heures"
+            type="number"
+            min="1"
+            value="1"
+        >
+
+
+        <div class="formulaire-boutons">
+
+            <button class="primary" onclick="publierAnnonce()">
+                Publier mon offre
+            </button>
+
+            <button class="secondary" onclick="fermerFormulaire()">
+                Annuler
+            </button>
+
+        </div>
 
     </div>
+
 </div>
+
 
 <script>
 
-function ouvrirFormulaire() {
-    document.getElementById("formulaire").style.display = "block";
-}
+    function ouvrirFormulaire() {
 
-function fermerFormulaire() {
-    document.getElementById("formulaire").style.display = "none";
-}
+        document.getElementById("formulaire").style.display = "block";
 
-function publierAnnonce() {
-    const titre = document.getElementById("titre").value;
-    const description = document.getElementById("description").value;
-    const categorie = document.getElementById("categorie").value;
-    const heures = document.getElementById("heures").value;
-
-    if (!titre || !description) {
-        alert("Veuillez remplir le titre et la description.");
-        return;
     }
 
-    const annonce = document.createElement("div");
 
-    annonce.className = "annonce";
+    function fermerFormulaire() {
 
-    annonce.innerHTML = `
-        <div class="photo">Nouvelle annonce</div>
-        <div class="contenu">
-            <div class="type">JE DONNE MON TEMPS</div>
-            <h3>${titre}</h3>
-            <p>${description}</p>
-            <small>${categorie}</small>
-            <br><br>
-            <strong>Disponible : ${heures} h</strong>
-        </div>
-    `;
+        document.getElementById("formulaire").style.display = "none";
 
-    document.querySelector(".annonces").prepend(annonce);
+    }
 
-    fermerFormulaire();
 
-    document.getElementById("titre").value = "";
-    document.getElementById("description").value = "";
-    document.getElementById("heures").value = "1";
+    function publierAnnonce() {
 
-    alert("Votre offre a été publiée !");
-}
+        const titre =
+            document.getElementById("titre").value.trim();
 
-    alert(
-        "Votre annonce est prête !\n\n" +
-        titre + "\n" +
-        categorie + "\n" +
-        heures + " heure(s)"
-    );
-}
+        const description =
+            document.getElementById("description").value.trim();
+
+        const categorie =
+            document.getElementById("categorie").value;
+
+        const heures =
+            document.getElementById("heures").value;
+
+
+        if (!titre || !description) {
+
+            alert("Veuillez remplir le titre et la description.");
+
+            return;
+
+        }
+
+
+        const annonce =
+            document.createElement("div");
+
+        annonce.className = "annonce";
+
+
+        annonce.innerHTML = `
+
+            <div class="photo">
+                Nouvelle annonce
+            </div>
+
+            <div class="contenu">
+
+                <div class="type">
+                    JE DONNE MON TEMPS
+                </div>
+
+                <h3>${titre}</h3>
+
+                <p>${description}</p>
+
+                <small>${categorie}</small>
+
+                <br><br>
+
+                <strong>
+                    Disponible : ${heures} h
+                </strong>
+
+            </div>
+
+        `;
+
+
+        const liste =
+            document.querySelector(".annonces");
+
+
+        liste.prepend(annonce);
+
+
+        fermerFormulaire();
+
+
+        document.getElementById("titre").value = "";
+
+        document.getElementById("description").value = "";
+
+        document.getElementById("heures").value = "1";
+
+
+        alert("Votre offre a été publiée !");
+
+    }
 
 </script>
+
+
+</body>
+
 </html>
