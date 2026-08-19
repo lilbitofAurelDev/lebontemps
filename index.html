@@ -3,22 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Le Bon Temps</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2d6a4f;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        .header-right button {
+            margin-left: 10px;
+        }
+
+        button {
+            border: none;
+            border-radius: 6px;
+            padding: 12px 18px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .button-outline {
+            background: white;
+            border: 1px solid #2d6a4f;
+            color: #2d6a4f;
+        }
+
+        .button-primary {
+            background: #2d6a4f;
+            color: white;
+        }
+
+        .hero {
+            background: white;
+            padding: 55px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin: 0 0 12px;
+        }
+
+        .hero p {
+            color: #666;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .search {
+            max-width: 750px;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search input {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .category {
+            background: white;
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            border-color: #2d6a4f;
+        }
+
+        .category-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .annonces {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .annonce {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .photo {
+            height: 160px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+
+        .annonce-content {
+            padding: 18px;
+        }
+
+        .annonce h3 {
+            margin: 0 0 10px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2d6a4f;
+            margin-top: 12px;
+        }
+
+        footer {
+            margin-top: 60px;
+            padding: 30px;
+            background: #222;
+            color: white;
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 15px;
+            }
+
+            .header-right {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .search {
+                flex-direction: column;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .annonces {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Le Bon Temps</h1>
 
-    <p>Partager son temps et en recevoir</p>
+<header>
+    <div>
+        <div class="logo">Le Bon Temps</div>
+        <div class="tagline">Partager son temps et en recevoir</div>
+    </div>
 
-    <h2>Bienvenue</h2>
+    <div class="header-right">
+        <button class="button-outline">Se connecter</button>
+        <button class="button-primary">Déposer une annonce</button>
+    </div>
+</header>
 
-    <p>
-        Un endroit pour proposer son temps,
-        demander de l'aide et rencontrer des personnes.
-    </p>
+<section class="hero">
 
-    <button>Déposer une annonce</button>
-    <button>Voir les annonces</button>
+    <h1>Que recherchez-vous ?</h1>
+
+    <p>Donnez un peu de votre temps. Recevez celui des autres.</p>
+
+    <div class="search">
+        <input type="text" placeholder="Ex : bricolage, garde d'enfant, jardinage...">
+        <button class="button-primary">Rechercher</button>
+    </div>
+
+</section>
+
+<div class="container">
+
+    <h2>Catégories</h2>
+
+    <div class="categories">
+
+        <div class="category">
+            <div class="category-icon">🔨</div>
+            <strong>Bricolage</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🌱</div>
+            <strong>Jardinage</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">👶</div>
+            <strong>Enfants</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">💻</div>
+            <strong>Informatique</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🚗</div>
+            <strong>Transport</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">🍳</div>
+            <strong>Cuisine</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">📚</div>
+            <strong>Cours</strong>
+        </div>
+
+        <div class="category">
+            <div class="category-icon">✨</div>
+            <strong>Autres</strong>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <h2>Quelques annonces</h2>
+
+    <div class="annonces">
+
+        <div class="annonce">
+            <div class="photo">Photo</div>
+
+            <div class="annonce-content">
+                <h3>Je peux aider à monter vos meubles</h3>
+                <p>Je suis disponible samedi après-midi pour donner un coup de main.</p>
+                <div class="price">2 heures de mon temps</div>
+            </div>
+        </div>
+
+        <div class="annonce">
+            <div class="photo">Photo</div>
+
+            <div class="annonce-content">
+                <h3>Besoin d'aide pour votre jardin</h3>
+                <p>Je cherche quelqu'un pour m'aider à entretenir mon potager.</p>
+                <div class="price">1 heure demandée</div>
+            </div>
+        </div>
+
+        <div class="annonce">
+            <div class="photo">Photo</div>
+
+            <div class="annonce-content">
+                <h3>Cours d'informatique</h3>
+                <p>Je peux vous aider à prendre en main votre ordinateur.</p>
+                <div class="price">Échange de temps</div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Le Bon Temps</p>
+    <p>Partager son temps et en recevoir.</p>
+</footer>
+
 </body>
 </html>
