@@ -235,6 +235,21 @@
             gap: 10px;
         }
 
+        .message {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .message.erreur {
+            display: block;
+            background: #ffe5e5;
+            color: #9b2226;
+        }
+
         @media (max-width: 700px) {
             header {
                 padding: 15px;
@@ -264,9 +279,11 @@
     </style>
 </head>
 
+
 <body>
 
 <header>
+
     <div>
         <div class="logo">Le Bon Temps</div>
         <div class="tagline">Partager son temps et en recevoir</div>
@@ -276,6 +293,7 @@
         <button class="secondary">Se connecter</button>
         <button class="primary">Mon compte</button>
     </div>
+
 </header>
 
 
@@ -288,14 +306,29 @@
         Recevez celui des autres.
     </p>
 
+
     <div class="credit">
-        <div class="credit-label">Votre crédit temps</div>
-        <div class="credit-number">0 h</div>
+
+        <div class="credit-label">
+            Votre crédit temps
+        </div>
+
+        <div class="credit-number">
+            Chargement...
+        </div>
+
     </div>
+
+
+    <div id="message" class="message"></div>
+
 
     <div class="actions">
 
-        <button class="primary" onclick="ouvrirFormulaire()">
+        <button
+            class="primary"
+            onclick="ouvrirFormulaire()"
+        >
             ➕ Donner mon temps
         </button>
 
@@ -304,6 +337,7 @@
         </button>
 
     </div>
+
 
     <div class="search">
 
@@ -379,38 +413,89 @@
     <div class="annonces">
 
         <div class="annonce">
-            <div class="photo">Photo</div>
+
+            <div class="photo">
+                Photo
+            </div>
 
             <div class="contenu">
-                <div class="type">JE DONNE MON TEMPS</div>
-                <h3>Je peux aider en bricolage</h3>
-                <p>Montage de meubles, petits travaux et coups de main.</p>
-                <strong>Disponible : 2 h</strong>
+
+                <div class="type">
+                    JE DONNE MON TEMPS
+                </div>
+
+                <h3>
+                    Je peux aider en bricolage
+                </h3>
+
+                <p>
+                    Montage de meubles, petits travaux et coups de main.
+                </p>
+
+                <strong>
+                    Disponible : 2 h
+                </strong>
+
             </div>
+
         </div>
 
 
         <div class="annonce">
-            <div class="photo">Photo</div>
+
+            <div class="photo">
+                Photo
+            </div>
 
             <div class="contenu">
-                <div class="type">JE DONNE MON TEMPS</div>
-                <h3>Aide au jardinage</h3>
-                <p>Je peux aider à entretenir un potager ou un jardin.</p>
-                <strong>Disponible : 3 h</strong>
+
+                <div class="type">
+                    JE DONNE MON TEMPS
+                </div>
+
+                <h3>
+                    Aide au jardinage
+                </h3>
+
+                <p>
+                    Je peux aider à entretenir un potager ou un jardin.
+                </p>
+
+                <strong>
+                    Disponible : 3 h
+                </strong>
+
             </div>
+
         </div>
 
 
         <div class="annonce">
-            <div class="photo">Photo</div>
+
+            <div class="photo">
+                Photo
+            </div>
 
             <div class="contenu">
-                <div class="type">JE DONNE MON TEMPS</div>
-                <h3>Je peux aider en informatique</h3>
-                <p>Ordinateur, téléphone, démarches et petits problèmes.</p>
-                <strong>Disponible : 1 h</strong>
+
+                <div class="type">
+                    JE DONNE MON TEMPS
+                </div>
+
+                <h3>
+                    Je peux aider en informatique
+                </h3>
+
+                <p>
+                    Ordinateur, téléphone, démarches et petits problèmes.
+                </p>
+
+                <strong>
+                    Disponible : 1 h
+                </strong>
+
             </div>
+
         </div>
 
     </div>
@@ -419,8 +504,15 @@
 
 
 <footer>
-    <p><strong>Le Bon Temps</strong></p>
-    <p>Une heure donnée = une heure reçue.</p>
+
+    <p>
+        <strong>Le Bon Temps</strong>
+    </p>
+
+    <p>
+        Une heure donnée = une heure reçue.
+    </p>
+
 </footer>
 
 
@@ -490,11 +582,17 @@
 
         <div class="formulaire-boutons">
 
-            <button class="primary" onclick="publierAnnonce()">
+            <button
+                class="primary"
+                onclick="publierAnnonce()"
+            >
                 Publier mon offre
             </button>
 
-            <button class="secondary" onclick="fermerFormulaire()">
+            <button
+                class="secondary"
+                onclick="fermerFormulaire()"
+            >
                 Annuler
             </button>
 
@@ -505,60 +603,231 @@
 </div>
 
 
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+    const SUPABASE_URL =
+        "https://kywivhuudeldfsuvwubr.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_0nz4gV1Xsz1LIqEcB0SDiA_86yCGBWL";
+
+
+    const supabaseClient =
+        supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    // Charger le crédit de Aurel au démarrage
+
+    async function chargerCredit() {
+
+        const { data, error } =
+            await supabaseClient
+                .from("profiles")
+                .select("credit_hours")
+                .eq("name", "Aurel")
+                .single();
+
+
+        if (error) {
+
+            console.error("Erreur Supabase :", error);
+
+            document.querySelector(
+                ".credit-number"
+            ).textContent = "Erreur";
+
+            afficherErreur(
+                "Impossible de charger votre crédit temps."
+            );
+
+            return;
+        }
+
+
+        const credit =
+            Number(data.credit_hours || 0);
+
+
+        document.querySelector(
+            ".credit-number"
+        ).textContent = credit + " h";
+
+    }
+
+
+    // Afficher une erreur
+
+    function afficherErreur(message) {
+
+        const element =
+            document.getElementById("message");
+
+        element.textContent = message;
+
+        element.className =
+            "message erreur";
+
+    }
+
+
+    // Ouvrir le formulaire
 
     function ouvrirFormulaire() {
 
-        document.getElementById("formulaire").style.display = "block";
+        document.getElementById(
+            "formulaire"
+        ).style.display = "block";
 
     }
 
+
+    // Fermer le formulaire
 
     function fermerFormulaire() {
 
-        document.getElementById("formulaire").style.display = "none";
+        document.getElementById(
+            "formulaire"
+        ).style.display = "none";
 
     }
 
 
-    function publierAnnonce() {
+    // Publier une offre
+
+    async function publierAnnonce() {
 
         const titre =
-            document.getElementById("titre").value.trim();
+            document
+                .getElementById("titre")
+                .value
+                .trim();
+
 
         const description =
-            document.getElementById("description").value.trim();
+            document
+                .getElementById("description")
+                .value
+                .trim();
+
 
         const categorie =
-            document.getElementById("categorie").value;
+            document
+                .getElementById("categorie")
+                .value;
+
 
         const heures =
-    document.getElementById("heures").value;
-
-const credit = document.querySelector(".credit-number");
-
-const creditActuel =
-    parseFloat(credit.textContent) || 0;
-
-const nouveauCredit =
-    creditActuel + parseFloat(heures);
-
-credit.textContent = nouveauCredit + " h";
+            parseFloat(
+                document
+                    .getElementById("heures")
+                    .value
+            );
 
 
         if (!titre || !description) {
 
-            alert("Veuillez remplir le titre et la description.");
+            alert(
+                "Veuillez remplir le titre et la description."
+            );
 
             return;
-
         }
 
+
+        if (!heures || heures <= 0) {
+
+            alert(
+                "Veuillez indiquer un nombre d'heures valide."
+            );
+
+            return;
+        }
+
+
+        // Récupérer le crédit actuel de Aurel
+
+        const { data: profil, error: erreurLecture } =
+            await supabaseClient
+                .from("profiles")
+                .select("credit_hours")
+                .eq("name", "Aurel")
+                .single();
+
+
+        if (erreurLecture) {
+
+            console.error(
+                "Erreur lecture :",
+                erreurLecture
+            );
+
+            afficherErreur(
+                "Impossible de récupérer votre crédit temps."
+            );
+
+            return;
+        }
+
+
+        const ancienCredit =
+            Number(
+                profil.credit_hours || 0
+            );
+
+
+        const nouveauCredit =
+            ancienCredit + heures;
+
+
+        // Enregistrer le nouveau crédit
+
+        const { error: erreurModification } =
+            await supabaseClient
+                .from("profiles")
+                .update({
+                    credit_hours: nouveauCredit
+                })
+                .eq("name", "Aurel");
+
+
+        if (erreurModification) {
+
+            console.error(
+                "Erreur modification :",
+                erreurModification
+            );
+
+            afficherErreur(
+                "Impossible d'enregistrer votre crédit temps."
+            );
+
+            return;
+        }
+
+
+        // Mettre à jour l'affichage
+
+        document.querySelector(
+            ".credit-number"
+        ).textContent =
+            nouveauCredit + " h";
+
+
+        // Créer l'annonce sur la page
 
         const annonce =
             document.createElement("div");
 
-        annonce.className = "annonce";
+
+        annonce.className =
+            "annonce";
 
 
         annonce.innerHTML = `
@@ -573,11 +842,17 @@ credit.textContent = nouveauCredit + " h";
                     JE DONNE MON TEMPS
                 </div>
 
-                <h3>${titre}</h3>
+                <h3>
+                    ${titre}
+                </h3>
 
-                <p>${description}</p>
+                <p>
+                    ${description}
+                </p>
 
-                <small>${categorie}</small>
+                <small>
+                    ${categorie}
+                </small>
 
                 <br><br>
 
@@ -590,26 +865,46 @@ credit.textContent = nouveauCredit + " h";
         `;
 
 
-        const liste =
-            document.querySelector(".annonces");
+        document
+            .querySelector(".annonces")
+            .prepend(annonce);
 
 
-        liste.prepend(annonce);
-
+        // Fermer le formulaire
 
         fermerFormulaire();
 
 
-        document.getElementById("titre").value = "";
+        // Réinitialiser le formulaire
 
-        document.getElementById("description").value = "";
+        document.getElementById(
+            "titre"
+        ).value = "";
 
-        document.getElementById("heures").value = "1";
+
+        document.getElementById(
+            "description"
+        ).value = "";
 
 
-        alert("Votre offre a été publiée !");
+        document.getElementById(
+            "heures"
+        ).value = "1";
+
+
+        alert(
+            "Offre publiée !\n\n" +
+            "Votre nouveau crédit : " +
+            nouveauCredit +
+            " h"
+        );
 
     }
+
+
+    // Charger le crédit dès que la page est prête
+
+    chargerCredit();
 
 </script>
 
