@@ -251,6 +251,7 @@
         }
 
         @media (max-width: 700px) {
+
             header {
                 padding: 15px;
             }
@@ -285,13 +286,28 @@
 <header>
 
     <div>
-        <div class="logo">Le Bon Temps</div>
-        <div class="tagline">Partager son temps et en recevoir</div>
+
+        <div class="logo">
+            Le Bon Temps
+        </div>
+
+        <div class="tagline">
+            Partager son temps et en recevoir
+        </div>
+
     </div>
 
+
     <div>
-        <button class="secondary">Se connecter</button>
-        <button class="primary">Mon compte</button>
+
+        <button class="secondary">
+            Se connecter
+        </button>
+
+        <button class="primary">
+            Mon compte
+        </button>
+
     </div>
 
 </header>
@@ -299,7 +315,9 @@
 
 <section class="hero">
 
-    <h1>Votre temps a de la valeur.</h1>
+    <h1>
+        Votre temps a de la valeur.
+    </h1>
 
     <p>
         Donnez un peu de votre temps.<br>
@@ -332,6 +350,7 @@
             ➕ Donner mon temps
         </button>
 
+
         <button class="secondary">
             🤝 J'ai besoin d'aide
         </button>
@@ -357,7 +376,10 @@
 
 <div class="container">
 
-    <h2>Explorer les compétences</h2>
+    <h2>
+        Explorer les compétences
+    </h2>
+
 
     <div class="categories">
 
@@ -366,35 +388,42 @@
             <strong>Bricolage</strong>
         </div>
 
+
         <div class="category">
             <div class="icon">🌱</div>
             <strong>Jardinage</strong>
         </div>
+
 
         <div class="category">
             <div class="icon">💻</div>
             <strong>Informatique</strong>
         </div>
 
+
         <div class="category">
             <div class="icon">📚</div>
             <strong>Cours & savoirs</strong>
         </div>
+
 
         <div class="category">
             <div class="icon">🚗</div>
             <strong>Transport</strong>
         </div>
 
+
         <div class="category">
             <div class="icon">🍳</div>
             <strong>Cuisine</strong>
         </div>
 
+
         <div class="category">
             <div class="icon">🏠</div>
             <strong>Aide à domicile</strong>
         </div>
+
 
         <div class="category">
             <div class="icon">✨</div>
@@ -408,95 +437,14 @@
 
 <div class="container">
 
-    <h2>Les dernières propositions</h2>
+    <h2>
+        Les dernières propositions
+    </h2>
+
 
     <div class="annonces">
 
-        <div class="annonce">
-
-            <div class="photo">
-                Photo
-            </div>
-
-            <div class="contenu">
-
-                <div class="type">
-                    JE DONNE MON TEMPS
-                </div>
-
-                <h3>
-                    Je peux aider en bricolage
-                </h3>
-
-                <p>
-                    Montage de meubles, petits travaux et coups de main.
-                </p>
-
-                <strong>
-                    Disponible : 2 h
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="annonce">
-
-            <div class="photo">
-                Photo
-            </div>
-
-            <div class="contenu">
-
-                <div class="type">
-                    JE DONNE MON TEMPS
-                </div>
-
-                <h3>
-                    Aide au jardinage
-                </h3>
-
-                <p>
-                    Je peux aider à entretenir un potager ou un jardin.
-                </p>
-
-                <strong>
-                    Disponible : 3 h
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="annonce">
-
-            <div class="photo">
-                Photo
-            </div>
-
-            <div class="contenu">
-
-                <div class="type">
-                    JE DONNE MON TEMPS
-                </div>
-
-                <h3>
-                    Je peux aider en informatique
-                </h3>
-
-                <p>
-                    Ordinateur, téléphone, démarches et petits problèmes.
-                </p>
-
-                <strong>
-                    Disponible : 1 h
-                </strong>
-
-            </div>
-
-        </div>
+        <!-- Les offres Supabase seront chargées ici -->
 
     </div>
 
@@ -522,7 +470,10 @@
 
     <div class="formulaire-contenu">
 
-        <h2>Donner mon temps</h2>
+        <h2>
+            Donner mon temps
+        </h2>
+
 
         <p>
             Proposez une compétence ou un coup de main à la communauté.
@@ -589,6 +540,7 @@
                 Publier mon offre
             </button>
 
+
             <button
                 class="secondary"
                 onclick="fermerFormulaire()"
@@ -607,304 +559,355 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
 <script>
 
-    const SUPABASE_URL =
-        "https://kywivhuudeldfsuvwubr.supabase.co";
-
-    const SUPABASE_KEY =
-        "sb_publishable_0nz4gV1Xsz1LIqEcB0SDiA_86yCGBWL";
+const SUPABASE_URL =
+    "https://kywivhuudeldfsuvwubr.supabase.co";
 
 
-    const supabaseClient =
-        supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
+const SUPABASE_KEY =
+    "sb_publishable_0nz4gV1Xsz1LIqEcB0SDiA_86yCGBWL";
+
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+
+/* =========================
+   AFFICHER UNE ERREUR
+========================= */
+
+function afficherErreur(message) {
+
+    const element =
+        document.getElementById("message");
+
+    element.textContent = message;
+
+    element.className =
+        "message erreur";
+}
+
+
+
+/* =========================
+   CHARGER LE CREDIT
+========================= */
+
+async function chargerCredit() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("profiles")
+            .select("credit_hours")
+            .eq("name", "Aurel")
+            .single();
+
+
+    if (error) {
+
+        console.error(
+            "Erreur chargement crédit :",
+            error
+        );
+
+        document.querySelector(
+            ".credit-number"
+        ).textContent = "Erreur";
+
+
+        afficherErreur(
+            "Impossible de charger votre crédit temps."
+        );
+
+        return;
+    }
+
+
+    const credit =
+        Number(data.credit_hours || 0);
+
+
+    document.querySelector(
+        ".credit-number"
+    ).textContent =
+        credit + " h";
+}
+
+
+
+/* =========================
+   CHARGER LES OFFRES
+========================= */
+
+async function chargerOffres() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("offers")
+            .select("*")
+            .order("created_at", {
+                ascending: false
+            });
+
+
+    if (error) {
+
+        console.error(
+            "Erreur chargement offres :",
+            error
+        );
+
+        afficherErreur(
+            "Impossible de charger les offres."
+        );
+
+        return;
+    }
+
+
+    const liste =
+        document.querySelector(".annonces");
+
+
+    liste.innerHTML = "";
+
+
+    data.forEach(function(offre) {
+
+        afficherAnnonce(offre);
+
+    });
+
+}
+
+
+
+/* =========================
+   AFFICHER UNE ANNONCE
+========================= */
+
+function afficherAnnonce(offre) {
+
+    const annonce =
+        document.createElement("div");
+
+
+    annonce.className =
+        "annonce";
+
+
+    annonce.innerHTML = `
+
+        <div class="photo">
+            Nouvelle annonce
+        </div>
+
+        <div class="contenu">
+
+            <div class="type">
+                JE DONNE MON TEMPS
+            </div>
+
+            <h3>
+                ${offre.title}
+            </h3>
+
+            <p>
+                ${offre.description}
+            </p>
+
+            <small>
+                ${offre.category}
+            </small>
+
+            <br><br>
+
+            <strong>
+                Disponible : ${offre.hours} h
+            </strong>
+
+        </div>
+
+    `;
+
+
+    document
+        .querySelector(".annonces")
+        .appendChild(annonce);
+}
+
+
+
+/* =========================
+   OUVRIR LE FORMULAIRE
+========================= */
+
+function ouvrirFormulaire() {
+
+    document.getElementById(
+        "formulaire"
+    ).style.display = "block";
+
+}
+
+
+
+/* =========================
+   FERMER LE FORMULAIRE
+========================= */
+
+function fermerFormulaire() {
+
+    document.getElementById(
+        "formulaire"
+    ).style.display = "none";
+
+}
+
+
+
+/* =========================
+   PUBLIER UNE OFFRE
+========================= */
+
+async function publierAnnonce() {
+
+    const titre =
+        document
+            .getElementById("titre")
+            .value
+            .trim();
+
+
+    const description =
+        document
+            .getElementById("description")
+            .value
+            .trim();
+
+
+    const categorie =
+        document
+            .getElementById("categorie")
+            .value;
+
+
+    const heures =
+        parseFloat(
+            document
+                .getElementById("heures")
+                .value
         );
 
 
-    // Charger le crédit de Aurel au démarrage
+    if (!titre || !description) {
 
-    async function chargerCredit() {
+        alert(
+            "Veuillez remplir le titre et la description."
+        );
 
-        const { data, error } =
-            await supabaseClient
-                .from("profiles")
-                .select("credit_hours")
-                .eq("name", "Aurel")
-                .single();
-
-
-        if (error) {
-
-            console.error("Erreur Supabase :", error);
-
-            document.querySelector(
-                ".credit-number"
-            ).textContent = "Erreur";
-
-            afficherErreur(
-                "Impossible de charger votre crédit temps."
-            );
-
-            return;
-        }
-
-
-        const credit =
-            Number(data.credit_hours || 0);
-
-
-        document.querySelector(
-            ".credit-number"
-        ).textContent = credit + " h";
-
+        return;
     }
 
 
-    // Afficher une erreur
+    if (!heures || heures <= 0) {
 
-    function afficherErreur(message) {
+        alert(
+            "Veuillez indiquer un nombre d'heures valide."
+        );
 
-        const element =
-            document.getElementById("message");
-
-        element.textContent = message;
-
-        element.className =
-            "message erreur";
-
+        return;
     }
 
 
-    // Ouvrir le formulaire
 
-    function ouvrirFormulaire() {
+    /* Enregistrement dans Supabase */
 
-        document.getElementById(
-            "formulaire"
-        ).style.display = "block";
+    const { data, error } =
+        await supabaseClient
+            .from("offers")
+            .insert({
 
-    }
+                title: titre,
 
+                description: description,
 
-    // Fermer le formulaire
+                category: categorie,
 
-    function fermerFormulaire() {
+                hours: heures,
 
-        document.getElementById(
-            "formulaire"
-        ).style.display = "none";
+                location: ""
 
-    }
+            })
+            .select();
 
 
-    // Publier une offre
+    if (error) {
 
-    async function publierAnnonce() {
-
-        const titre =
-            document
-                .getElementById("titre")
-                .value
-                .trim();
-
-
-        const description =
-            document
-                .getElementById("description")
-                .value
-                .trim();
-
-
-        const categorie =
-            document
-                .getElementById("categorie")
-                .value;
-
-
-        const heures =
-            parseFloat(
-                document
-                    .getElementById("heures")
-                    .value
-            );
-
-
-        if (!titre || !description) {
-
-            alert(
-                "Veuillez remplir le titre et la description."
-            );
-
-            return;
-        }
-
-
-        if (!heures || heures <= 0) {
-
-            alert(
-                "Veuillez indiquer un nombre d'heures valide."
-            );
-
-            return;
-        }
-
-
-        // Récupérer le crédit actuel de Aurel
-
-        const { data: profil, error: erreurLecture } =
-            await supabaseClient
-                .from("profiles")
-                .select("credit_hours")
-                .eq("name", "Aurel")
-                .single();
-
-
-        if (erreurLecture) {
-
-            console.error(
-                "Erreur lecture :",
-                erreurLecture
-            );
-
-            afficherErreur(
-                "Impossible de récupérer votre crédit temps."
-            );
-
-            return;
-        }
-
-
-        const ancienCredit =
-            Number(
-                profil.credit_hours || 0
-            );
-
-
-        const nouveauCredit =
-            ancienCredit + heures;
-
-
-        // Enregistrer le nouveau crédit
-
-        const { error: erreurModification } =
-            await supabaseClient
-                .from("profiles")
-                .update({
-                    credit_hours: nouveauCredit
-                })
-                .eq("name", "Aurel");
-
-
-        if (erreurModification) {
-
-            console.error(
-                "Erreur modification :",
-                erreurModification
-            );
-
-            afficherErreur(
-                "Impossible d'enregistrer votre crédit temps."
-            );
-
-            return;
-        }
-
-
-        // Mettre à jour l'affichage
-
-        document.querySelector(
-            ".credit-number"
-        ).textContent =
-            nouveauCredit + " h";
-
-
-        // Créer l'annonce sur la page
-
-        const annonce =
-            document.createElement("div");
-
-
-        annonce.className =
-            "annonce";
-
-
-        annonce.innerHTML = `
-
-            <div class="photo">
-                Nouvelle annonce
-            </div>
-
-            <div class="contenu">
-
-                <div class="type">
-                    JE DONNE MON TEMPS
-                </div>
-
-                <h3>
-                    ${titre}
-                </h3>
-
-                <p>
-                    ${description}
-                </p>
-
-                <small>
-                    ${categorie}
-                </small>
-
-                <br><br>
-
-                <strong>
-                    Disponible : ${heures} h
-                </strong>
-
-            </div>
-
-        `;
-
-
-        document
-            .querySelector(".annonces")
-            .prepend(annonce);
-
-
-        // Fermer le formulaire
-
-        fermerFormulaire();
-
-
-        // Réinitialiser le formulaire
-
-        document.getElementById(
-            "titre"
-        ).value = "";
-
-
-        document.getElementById(
-            "description"
-        ).value = "";
-
-
-        document.getElementById(
-            "heures"
-        ).value = "1";
+        console.error(
+            "Erreur publication :",
+            error
+        );
 
 
         alert(
-            "Offre publiée !\n\n" +
-            "Votre nouveau crédit : " +
-            nouveauCredit +
-            " h"
+            "Impossible de publier l'offre.\n\n" +
+            error.message
         );
 
+        return;
     }
 
 
-    // Charger le crédit dès que la page est prête
 
-    chargerCredit();
+    /* Affichage immédiat */
+
+    afficherAnnonce(data[0]);
+
+
+    /* Fermer */
+
+    fermerFormulaire();
+
+
+    /* Réinitialiser */
+
+    document.getElementById(
+        "titre"
+    ).value = "";
+
+
+    document.getElementById(
+        "description"
+    ).value = "";
+
+
+    document.getElementById(
+        "heures"
+    ).value = "1";
+
+
+    alert(
+        "Votre offre a été publiée !"
+    );
+
+}
+
+
+
+/* =========================
+   INITIALISATION
+========================= */
+
+chargerCredit();
+
+chargerOffres();
 
 </script>
 
